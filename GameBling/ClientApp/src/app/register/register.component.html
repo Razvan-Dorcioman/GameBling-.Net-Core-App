@@ -1,0 +1,39 @@
+<div class="wrapper fadeInDown">
+
+  <div id="formContent">
+
+    <div class="fadeIn first">
+      <h1 style="padding: 10px; font-size:24px">Register</h1>
+    </div>
+
+    <form method="post" (submit)="onRegister()">
+
+      <input type="text" class="fadeIn second" placeholder="username" name="username" [(ngModel)]="creds.username" required #username="ngModel" minlength="4"/>
+      <div class="text-danger" *ngIf="(username.touched || username.dirty) && username.invalid">
+        <div *ngIf="username.errors.required">Username is required</div>
+        <div *ngIf="username.errors.minlength">Username must be at least 4 characters long</div>
+      </div>
+
+      <input type="email" class="fadeIn third" placeholder="e-mail" name="email" [(ngModel)]="creds.email" required #email="ngModel" email="true"/>
+      <div class="text-danger" *ngIf="(email.touched || email.dirty) && email.invalid">
+        <div *ngIf="email.errors.required">Email is required</div>
+        <div *ngIf="email.errors.email">Email invalid</div>
+      </div>
+
+      <input type="password" class="fadeIn third" placeholder="password" name="password" [(ngModel)]="creds.password" required #password1="ngModel" minlength="8"/>
+      <div class="text-danger" *ngIf="(password1.touched || password1.dirty) && password1.invalid">
+        <div *ngIf="password1.errors.required">Password is required</div>
+        <div *ngIf="password1.errors.minlength">Password must be at least 8 characters long</div>
+      </div>
+
+      <input class="fadeIn fourth" type="submit" value="Register" />
+
+    </form>
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+  </div>
+
+</div>

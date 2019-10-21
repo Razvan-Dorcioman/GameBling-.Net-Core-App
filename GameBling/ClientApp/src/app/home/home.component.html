@@ -1,0 +1,116 @@
+<div class="container">
+
+  <div *ngIf="this.data.userName != 'Guest'" class="row">
+    <div class="col">
+      <div class="card mb-2 my-2 border-primary">
+        <div class="card-header">
+          <h3>Hello, {{ data.userName }}</h3>
+        </div>
+        <div class="card-body text-primary">
+          <div class="row">
+            <div class="col-4">
+              <h3>Current balance: {{ data.userBalance | currency }}</h3>
+            </div>
+            <div class="col-4 text-center">
+              <h2 [ngStyle]="{'display': this.signalRService.wonDisplay}" class="text-success">You won!</h2>
+              <h2 [ngStyle]="{'display': this.signalRService.loseDisplay}" class="text-danger">You lose...</h2>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card card-body mb-2 my-2">
+        <div class="text-center">
+          <h2 *ngIf="this.signalRService.timer != '0.00'" class="display-3">{{ signalRService.timer }}</h2>
+          <img *ngIf="this.signalRService.timer == '0.00'" src="../../assets/img/kitty_coin_fast.gif" class="spinning-kitty" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="this.data.userName != 'Guest' && this.data.canBet == null" class="row">
+    <div class="col">
+      <div class="card card-body mb-2">
+        <form>
+          <div class="form-row align-items-center text-center">
+            <div class="col-sm-9 mb-2">
+              <input type="text" class="form-control form-control-lg" id="bet" name="amount" [(ngModel)]="this.data.amount" aria-describedby="betLuck" placeholder="Enter bet amount...">
+            </div>
+            <div class="col mb-2">
+              <button type="submit" (click)="placeBet()" class="btn btn-primary text-white btn-lg btn-block" >Place bet!</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <div class="card-deck">
+
+        <div class="card border-light">
+
+          <label class="wrapper">
+            <div class="card-header text-center">
+              <input type="radio" name="value" [(ngModel)]="this.data.value" [value]="0" [attr.disabled]="this.data.canBet">
+              <img src="../../assets/img/kitty_black.png" class="card-img-top" alt="black_kitty">
+            </div>
+          </label>
+
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item active">
+                <h5 class="float-left">PLAYER</h5>
+                <h5 class="float-right">BET</h5>
+              </li>
+              <li class="list-group-item clearfix" *ngFor="let firstBet of signalRService.firstBetsData" [ngStyle]="{'color': this.signalRService.firstColor}">
+                <h5 class="float-left">
+                  {{ firstBet.username }}
+                </h5>
+                <h5 class="float-right">
+                  {{ firstBet.amount | currency }}
+                </h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card border-light">
+          
+          <label class="wrapper">
+            <div class="card-header text-center">
+              <input type="radio" name="value" [(ngModel)]="this.data.value" [value]="1" [attr.disabled]="this.data.canBet">
+              <img src="../../assets/img/kitty_red.png" class="card-img-top" alt="red_kitty">
+            </div>
+          </label>
+
+          <div class="card-body">
+            <ul class="list-group">
+              <li class="list-group-item active">
+                <h5 class="float-left">PLAYER</h5>
+                <h5 class="float-right">BET</h5>
+              </li>
+              <li class="list-group-item clearfix" *ngFor="let secondBet of signalRService.secondBetsData" [ngStyle]="{'color': this.signalRService.secondColor}">
+                <h5 class="float-left">
+                  {{ secondBet.username }}
+                </h5>
+                <h5 class="float-right">
+                  {{ secondBet.amount | currency }}
+                </h5>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>

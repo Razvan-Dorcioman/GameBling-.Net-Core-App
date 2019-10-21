@@ -1,0 +1,34 @@
+<div>
+
+  <div class="col d-flex justify-content-center align-items-center">
+
+    <form class="form-group form">
+      <div class="row">
+        <div class="form-group">
+          <h3>Add funds to your deposit</h3>
+          <!--<label for="balance">Add funds to your deposit</label>-->
+          <input type="number" class="form-control" id="balance" name="balance" placeholder="Balance" [(ngModel)]="funds">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="text-danger">{{errorMessage}}</div>
+      </div>
+
+      <div class="row">
+
+        <div class="slds-form-element__row col-md-6">
+          <button (click)="UpdateFunds()" class="btn btn-success">Add funds</button>
+        </div>
+
+        <div class="slds-form-element__row col-md-6">
+          <button (click)="WithdrawFunds()" class="btn btn-danger">Withdraw funds</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

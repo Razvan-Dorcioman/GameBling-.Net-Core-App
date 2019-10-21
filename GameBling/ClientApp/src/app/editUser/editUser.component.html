@@ -1,0 +1,39 @@
+<div class="col d-flex justify-content-center align-items-center">
+  <div class="card" >
+    <div class="row">
+      <div class="col-md-7">
+      </div>
+
+      <div class="col-md-5">
+        <h1>Edit user</h1>
+        <br />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+      </div>
+
+      <div class="col-md-6">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" #username name="username" placeholder="Username...">
+            <!--<input type="text" class="form-control" #username [(ngModel)]="this.data.user.userName" name="username" placeholder="Username...">-->
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email</label>
+            <input type="email" class="form-control" #email name="email" placeholder="Email...">
+            <!--<input type="email" class="form-control" #email [(ngModel)]="this.data.user.email" name="email" placeholder="Email...">-->
+          </div>
+          <div class="form-group">
+            <label for="checkAdmin">Set user as admin</label>
+            <input type="checkbox" #checkAdmin name="checkAdmin">
+            <!--<input type="checkbox" #checkAdmin name="checkAdmin" [checked]="this.data.user.admin" [(ngModel)]="this.data.user.admin">-->
+          </div>
+          <button (click)="saveEditUser()" class="btn btn-success">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

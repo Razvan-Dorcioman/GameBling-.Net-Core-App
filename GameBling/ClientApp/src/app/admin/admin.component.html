@@ -1,0 +1,37 @@
+<br />
+<div class="col d-flex justify-content-center align-items-center">
+  <div class="card">
+    <table class="table" mdbTable>
+      <thead class="black white-text">
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Balance</th>
+          <th>Rol</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let u of users">
+          <td>{{u.userName}}</td>
+          <td>{{u.email}}</td>
+          <td>{{u.balance | currency}}</td>
+          <td *ngIf="u.admin == true">admin</td>
+          <td *ngIf="u.admin == false">client</td>
+          <!--<td #elseBlock>client</td>-->
+          <td>
+            <button (click)="editUser(u.id)" class="btn btn-success">Edit</button>
+            <button (click)="deleteUser(u.id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+  <!--<div class="row">
+    <ul>
+      <li *ngFor="let c of cards">ID: {{ c.id }} - Card Number: {{ c.cardNumber }} - Card-holder name: {{ c.cardHolderName }} - User: {{ c.user }} </li>
+    </ul>
+  </div>-->
+

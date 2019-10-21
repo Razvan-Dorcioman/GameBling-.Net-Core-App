@@ -1,0 +1,43 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <div *ngIf="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
+    </div>
+
+    <div>
+      <h4 style="padding:10px" class="fadeIn first">Sign In</h4>
+    </div>
+
+    <form (submit)="onLogin()">
+
+      <input type="text" id="login" class="fadeIn second" placeholder="username" name="username" [(ngModel)]="creds.username" #username="ngModel" required minlength="4" forbiddenName="Guest" />
+
+      <div class="text-danger" *ngIf="(username.touched || username.dirty) && username.invalid">
+        <div *ngIf="username.errors.required">Username is required</div>
+        <div *ngIf="username.errors.minlength">Username must be at least 4 characters long</div>
+        <div *ngIf="username.errors.forbiddenName">Username cannot be Guest</div>
+      </div>
+
+      <input type="password" id="password" class="fadeIn third" placeholder="password" name="password" [(ngModel)]="creds.password" #password="ngModel" required min-length />
+
+      <div class="text-danger" *ngIf="password.touched && password.invalid && password.errors.required">Password is required</div>
+
+      <div>
+        <input type="checkbox" class="fadeIn fourth" name="checkbox" [(ngModel)]="creds.rememberMe">Remember Me
+      </div>
+
+      <input type="submit" value="Login" class="fadeIn fourth">
+
+    </form>
+
+    <div id="formFooter">
+      <a routerLink="/register" routerLinkActive="active" class="underlineHover">Register</a>
+    </div>
+
+  </div>
+</div>

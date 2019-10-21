@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="slds-card col-md-6 col-md-offset-3">
+    <div class="slds-card__header">
+      <h1>
+        GameBling Card
+      </h1>
+    </div>
+
+    <div class="row">
+
+      <form class="form-group" card container=".card-wrapper">
+        <div class="form-group">
+          <div class="card-wrapper"></div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="cardnumber" placeholder="Card number" class="form-control" [(ngModel)]="cardInfo.cardNumber" #cardNumber="ngModel" required card-number />
+          <div class="text-danger" *ngIf="(cardNumber.touched || cardNumber.dirty)">
+            <div *ngIf="cardNumber.errors?.required">Card number is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="expirationdate" placeholder="MM/YY" class="form-control" [(ngModel)]="cardInfo.expirationDate" #cardExpiry="ngModel" required card-expiry />
+          <div class="text-danger" *ngIf="(cardExpiry.touched || cardExpiry.dirty)">
+            <div *ngIf="cardExpiry.errors?.required">Card expiration date is required</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="cvc" placeholder="CVC" class="form-control" [(ngModel)]="cardInfo.CVC" card-cvc #cvc="ngModel" required minlength="3" maxlength="3" />
+          <div class="text-danger" *ngIf="(cvc.touched || cvc.dirty)">
+            <div *ngIf="cvc.errors?.required">CVC is required</div>
+            <div *ngIf="cvc.errors?.minlength">CVC must have 3 digits</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="text" name="cardholdername" placeholder="Card-holder name" class="form-control" [(ngModel)]="cardInfo.cardHolderName" card-name #holder="ngModel" required minlength="6" />
+          <div class="text-danger" *ngIf="(holder.touched || holder.dirty) && holder.invalid">
+            <div *ngIf="holder.errors?.required">Card-holder name is required</div>
+            <div *ngIf="holder.errors?.minlength">Card-holder name must be 6 characters long</div>
+          </div>
+        </div>
+
+
+        <div class="slds-form-element__row">
+          <button class="btn btn-success" (click)="AddCard()">Add Card</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+  <a class="navbar-brand" [routerLinkActive]='["link-active"]' [routerLink]='["/"]'>GameBling</a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+
+    <ul class="navbar-nav">
+
+      <li *ngIf="this.data.loggedInUser == null" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" [routerLink]='["/login"]'>Log In</a>
+      </li>
+      <li *ngIf="this.data.loggedInUser == null" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" [routerLink]='["/register"]'>Register</a>
+      </li>
+      <li *ngIf="this.data.loggedInUser != null" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" [routerLink]='["/card"]'>Add Card</a>
+      </li>
+
+      <li *ngIf="this.data.loggedInUser != null" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" [routerLink]='["/deposit"]'>Add Funds to Deposit</a>
+      </li>
+
+      <li *ngIf="this.data.loggedInUser != null && this.data.loggedInUser.admin == true" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" (click)="adminDashboard()" style="cursor:pointer;">Dashboard</a>
+      </li>
+      <li *ngIf="this.data.loggedInUser != null" [routerLinkActive]='["link-active"]'>
+        <a class="nav-link" (click)="onSignOut()" style="cursor:pointer;">Sign Out!</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
